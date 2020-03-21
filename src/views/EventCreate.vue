@@ -1,5 +1,3 @@
 <template>
-  <div>
-    <h1>Create another event</h1>
-  </div>
+  <h1>Create another event</h1>
 </template>

@@ -1,5 +1,3 @@
 <template>
-  <div>
-    <h1>Showing event #1</h1>
-  </div>
+  <h1>Showing event {{ $route.params.id }}</h1>
 </template>

@@ -9,23 +9,24 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'event-list',
     component: EventList
   },
   {
     path: '/event/:id',
-    name: 'EventShow',
+    name: 'event-show',
     component: EventShow,
     props: true
   },
   {
     path: '/event/create',
-    name: 'EventCreate',
+    name: 'event-create',
     component: EventCreate
   }
 ]
 
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 
