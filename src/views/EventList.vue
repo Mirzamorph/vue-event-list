@@ -1,10 +1,33 @@
 <template>
   <div>
-    <h1>Event List</h1>
-    <router-link :to="{ name: 'EventShow' }">LinkTitle</router-link>
+    <h1>Events Listing</h1>
+    <EventCard v-for="event in events" :key="event.id" :event="event" />
   </div>
 </template>
 
 <script>
-export default {}
+import EventCard from '@/components/EventCard'
+import EventService from '@/services'
+
+export default {
+  components: {
+    EventCard
+  },
+  data() {
+    return {
+      events: []
+    }
+  },
+  methods: {
+    fetchEvents() {
+      console.log('request starts')
+      EventService.getEvents()
+        .then(response => (this.events = response.data))
+        .catch(error => console.warn(error))
+    }
+  },
+  created() {
+    this.fetchEvents()
+  }
+}
 </script>
