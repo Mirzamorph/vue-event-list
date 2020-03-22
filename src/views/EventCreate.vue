@@ -1,3 +1,81 @@
 <template>
-  <h1>Create another event</h1>
+  <div>
+    <h1>Create an Event</h1>
+    <form @submit.prevent="createEvent">
+      <label>Select a category</label>
+      <select v-model="event.category">
+        <option v-for="cat in categories" :key="cat">{{ cat }}</option>
+      </select>
+
+      <h3>Name & describe your event</h3>
+      <div class="field">
+        <label>Title</label>
+        <input
+          v-model="event.title"
+          type="text"
+          placeholder="Add an event title"
+        />
+      </div>
+
+      <div class="field">
+        <label>Description</label>
+        <input
+          v-model="event.description"
+          type="text"
+          placeholder="Add a description"
+        />
+      </div>
+
+      <h3>When is your event?</h3>
+
+      <div class="field">
+        <label>Date</label>
+        <input type="date" v-model="event.date" />
+      </div>
+
+      <div class="field">
+        <label>Select a time</label>
+        <input type="time" v-model="event.time" />
+      </div>
+
+      <input type="submit" class="button -fill-gradient" value="Submit" />
+    </form>
+  </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      categories: this.$store.state.categories,
+      event: this.createFreshEventObject()
+    }
+  },
+  methods: {
+    createEvent() {
+      this.$store.dispatch('createEvent', this.event).then(event => {
+        this.$router.push({
+          name: 'event-show',
+          params: { id: event.id }
+        })
+      })
+    },
+    createFreshEventObject() {
+      return {
+        id: null,
+        title: '',
+        date: '',
+        time: '',
+        description: '',
+        category: ''
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+.field {
+  margin-bottom: 24px;
+}
+</style>

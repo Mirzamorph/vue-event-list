@@ -1,32 +1,24 @@
 <template>
   <div>
     <h1>Events Listing</h1>
-    <EventCard v-for="event in events" :key="event.id" :event="event" />
+    <template v-if="!loading">
+      <EventCard v-for="event in events" :key="event.id" :event="event" />
+    </template>
+    <p v-else>Данные грузятся</p>
   </div>
 </template>
 
 <script>
 import EventCard from '@/components/EventCard'
-import EventService from '@/services'
+import { mapState } from 'vuex'
 
 export default {
   components: {
     EventCard
   },
-  data() {
-    return {
-      events: []
-    }
-  },
-  methods: {
-    fetchEvents() {
-      EventService.getEvents()
-        .then(response => (this.events = response.data))
-        .catch(error => console.warn(error))
-    }
-  },
+  computed: mapState(['events', 'loading']),
   created() {
-    this.fetchEvents()
+    this.$store.dispatch('fetchEvents')
   }
 }
 </script>

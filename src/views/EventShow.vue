@@ -1,32 +1,13 @@
 <template>
-  <div>
+  <div class="box">
     <div class="event-header">
       <span class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
       <h1 class="title">{{ event.title }}</h1>
-      <h5>Organized by {{ event.organizer }}</h5>
       <h5>Category: {{ event.category }}</h5>
-    </div>  
-
-    <address>{{ event.location }}</address>
+    </div>
 
     <h2>Event details</h2>
     <p>{{ event.description }}</p>
-
-    <h2>
-      Attendees
-      <span class="badge -fill-gradient">{{
-        event.attendees ? event.attendees.length : 0
-      }}</span>
-    </h2>
-    <ul class="list-group">
-      <li
-        v-for="(attendee, index) in event.attendees"
-        :key="index"
-        class="list-item"
-      >
-        <b>{{ attendee.name }}</b>
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -39,7 +20,7 @@ export default {
       event: {}
     }
   },
-  created() {
+  mounted() {
     EventService.getEvent(this.id)
       .then(response => {
         this.event = response.data
@@ -52,6 +33,9 @@ export default {
 </script>
 
 <style scoped>
+.box {
+  margin-top: 2em;
+}
 .location {
   margin-bottom: 0;
 }
