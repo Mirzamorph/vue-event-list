@@ -20,7 +20,6 @@ export default {
   },
   methods: {
     fetchEvents() {
-      console.log('request starts')
       EventService.getEvents()
         .then(response => (this.events = response.data))
         .catch(error => console.warn(error))
