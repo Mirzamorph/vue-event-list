@@ -1,72 +1,100 @@
 {
-  "events": [{
+  "events": [
+    {
       "id": 1,
       "title": "Beach Cleanup",
       "date": "Aug 28 2018",
       "time": "10:00",
-      "location": "Daytona Beach",
       "description": "Let's clean up this beach.",
-      "organizer": "Adam Jahr",
-      "category": "sustainability",
-      "attendees": [{
-          "id": "abc123",
-          "name": "Adam Jahr"
-        },
-        {
-          "id": "def456",
-          "name": "Gregg Pollack"
-        },
-        {
-          "id": "ghi789",
-          "name": "Beth Swanson"
-        },
-        {
-          "id": "jkl101",
-          "name": "Mary Gordon"
-        }
-      ]
+      "category": "sustainability"
     },
     {
       "id": 2,
-      "title": "Park Cleanup",
-      "date": "Nov 12 2018",
-      "time": "12:00",
-      "location": "132 N Magnolia Street, Orlando, Florida",
-      "description": "We're going to clean up this park.",
-      "organizer": "Adam Jahr",
-      "category": "nature",
-      "attendees": [{
-          "id": "ghi789",
-          "name": "Beth Swanson"
-        },
-        {
-          "id": "jkl101",
-          "name": "Mary Gordon"
-        }
-      ]
+      "title": "Programming at home",
+      "date": "Feb 28 2020",
+      "time": "10:00",
+      "description": "Let's learn what vue.js is about",
+      "category": "programming"
     },
     {
       "id": 3,
-      "title": "Pet Adoption Day",
-      "date": "Dec 2 2018",
-      "time": "12:00",
-      "location": "132 N Magnolia Street, Orlando, Florida",
-      "description": "Help animals find new homes.",
-      "organizer": "Gregg Pollack",
-      "category": "animal welfare",
-      "attendees": [{
-          "id": "abc123",
-          "name": "Adam Jahr"
-        },
-        {
-          "id": "ghi789",
-          "name": "Beth Swanson"
-        },
-        {
-          "id": "jkl101",
-          "name": "Mary Gordon"
-        }
-      ]
+      "title": "Carantine at home",
+      "date": "Mar 22 2020",
+      "time": "13:00",
+      "description": "Coronovirus pandemia",
+      "category": "virus"
+    },
+    {
+      "id": 4,
+      "title": "Having a sunny day",
+      "date": "2020-03-22",
+      "time": "16:11",
+      "description": "Good morning everybody",
+      "category": "chilling"
+    },
+    {
+      "id": 5,
+      "title": "Test one",
+      "date": "1313-12-23",
+      "time": "21:31",
+      "description": "Just to make sure",
+      "category": "chilling"
+    },
+    {
+      "id": 6,
+      "title": "CoronaHipe",
+      "date": "1231-12-23",
+      "time": "03:23",
+      "description": "It's always weird to panic no matter what",
+      "category": "virus"
+    },
+    {
+      "id": 7,
+      "title": "Another title",
+      "date": "1313-12-23",
+      "time": "13:12",
+      "description": "I just need some more events",
+      "category": "virus"
+    },
+    {
+      "id": 8,
+      "title": "Chill!",
+      "date": "1313-03-21",
+      "time": "03:23",
+      "description": "Hey you, yes you",
+      "category": "chilling"
+    },
+    {
+      "id": 9,
+      "title": "Whatever title",
+      "date": "1313-02-23",
+      "time": "03:23",
+      "description": "one two three uno dos tres",
+      "category": "whatever"
+    },
+    {
+      "id": 10,
+      "title": "I really must learn spanish",
+      "date": "2020-03-22",
+      "time": "21:11",
+      "description": "Because I want this",
+      "category": "programming"
+    },
+    {
+      "id": 11,
+      "title": "One more category",
+      "date": "1313-12-23",
+      "time": "03:23",
+      "description": "Another description",
+      "category": "chilling"
+    },
+    {
+      "id": 12,
+      "title": "Just chill bro",
+      "date": "3213-03-12",
+      "time": "03:13",
+      "description": "No need for description but ok",
+      "category": "chilling"
     }
   ]
 }
