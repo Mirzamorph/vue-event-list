@@ -2,7 +2,7 @@
   <div id="app">
     <NavBar />
     <transition name="fade" mode="out-in">
-      <router-view />
+      <router-view :key="$route.fullPath" />
     </transition>
   </div>
 </template>

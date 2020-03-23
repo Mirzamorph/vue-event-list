@@ -47,21 +47,8 @@
 export default {
   data() {
     return {
-      categories: this.$store.state.categories,
-      event: this.createFreshEventObject()
-    }
-  },
-  methods: {
-    createEvent() {
-      this.$store.dispatch('createEvent', this.event).then(event => {
-        this.$router.push({
-          name: 'event-show',
-          params: { id: event.id }
-        })
-      })
-    },
-    createFreshEventObject() {
-      return {
+      categories: this.$store.state.event.categories,
+      event: {
         id: null,
         title: '',
         date: '',
@@ -69,6 +56,16 @@ export default {
         description: '',
         category: ''
       }
+    }
+  },
+  methods: {
+    createEvent() {
+      this.$store.dispatch('event/createEvent', this.event).then(event => {
+        this.$router.push({
+          name: 'event-show',
+          params: { id: event.id }
+        })
+      })
     }
   }
 }

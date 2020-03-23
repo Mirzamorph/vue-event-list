@@ -1,5 +1,5 @@
 <template>
-  <div class="box">
+  <div class="box" v-if="event">
     <div class="event-header">
       <span class="eyebrow">@{{ event.time }} on {{ event.date }}</span>
       <h1 class="title">{{ event.title }}</h1>
@@ -12,22 +12,18 @@
 </template>
 
 <script>
-import EventService from '@/services'
 export default {
   props: ['id'],
   data() {
     return {
-      event: {}
+      event: null
     }
   },
   mounted() {
-    EventService.getEvent(this.id)
-      .then(response => {
-        this.event = response.data
-      })
-      .catch(error => {
-        console.log('There was an error:', error.response)
-      })
+    this.$store.dispatch('event/getEvent', this.id).then(event => {
+      if (event === undefined) this.$router.push({ name: '404' })
+      this.event = event
+    })
   }
 }
 </script>
