@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import EventList from '@/views/EventList'
 import EventCreate from '@/views/EventCreate'
 import EventShow from '@/views/EventShow'
+import NotFound from '@/components/NotFound'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,12 @@ const routes = [
     path: '/event/:id',
     name: 'event-show',
     component: EventShow,
+    props: true
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: NotFound,
     props: true
   }
 ]
