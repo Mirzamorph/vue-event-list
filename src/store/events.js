@@ -7,6 +7,11 @@ const initialState = {
   error: null
 }
 
+const notice = (type, message, dispatch) => {
+  const notification = { type, message }
+  dispatch('notification/add', notification, { root: true })
+}
+
 export default {
   namespaced: true,
   state: initialState,
@@ -55,14 +60,16 @@ export default {
           commit('FETCH_EVENTS_FAILURE', error.toString())
         })
     },
-    createEvent({ commit }, newEvent) {
+    createEvent({ commit, dispatch }, newEvent) {
       return EventService.postEvent(newEvent)
         .then(({ data }) => {
           commit('ADD_EVENT', data)
+          const message = 'The event was created successfully!'
+          notice('success', message, dispatch)
           return data
         })
         .catch(error => {
-          commit('FETCH_EVENTS_FAILURE', error.toString())
+          notice('error', error.message, dispatch)
         })
     }
   }
