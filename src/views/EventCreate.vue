@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import NProgress from 'nprogress'
+
 export default {
   data() {
     return {
@@ -60,13 +62,19 @@ export default {
   },
   methods: {
     createEvent() {
-      this.$store.dispatch('event/createEvent', this.event).then(event => {
-        if (!event) return
-        this.$router.push({
-          name: 'event-show',
-          params: { id: event.id }
+      NProgress.start()
+      this.$store
+        .dispatch('event/createEvent', this.event)
+        .then(event => {
+          if (!event) return
+          this.$router.push({
+            name: 'event-show',
+            params: { id: event.id }
+          })
         })
-      })
+        .catch(() => {
+          NProgress.done()
+        })
     }
   }
 }
