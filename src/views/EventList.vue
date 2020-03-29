@@ -12,6 +12,21 @@ import Pagination from '@/components/Pagination'
 import { mapState } from 'vuex'
 import store from '@/store'
 
+function changePage(to, next) {
+  const currentPage = to.query.page || 1
+  store
+    .dispatch('event/fetchEvents', {
+      perPage: 3,
+      page: currentPage
+    })
+    .then(({ data, headers }) => {
+      to.params.totalCount = parseInt(headers['x-total-count'])
+      next(() => {
+        if (!data.length) this.$router.push({ name: '404' })
+      })
+    })
+}
+
 export default {
   components: {
     EventCard,
@@ -30,31 +45,10 @@ export default {
     }
   },
   beforeRouteEnter(to, from, next) {
-    const currentPage = to.query.page || 1
-    store
-      .dispatch('event/fetchEvents', {
-        perPage: 3,
-        page: currentPage
-      })
-      .then(({ data, headers }) => {
-        to.params.totalCount = parseInt(headers['x-total-count'])
-        next(() => {
-          if (!data.length) this.$router.push({ name: '404' })
-        })
-      })
+    changePage(to, next)
   },
   beforeRouteUpdate(to, from, next) {
-    const currentPage = to.query.page || 1
-    store
-      .dispatch('event/fetchEvents', {
-        perPage: 3,
-        page: currentPage
-      })
-      .then(({ data, headers }) => {
-        if (!data.length) this.$router.push({ name: '404' })
-        to.params.totalCount = parseInt(headers['x-total-count'])
-        next()
-      })
+    changePage(to, next)
   }
 }
 </script>
