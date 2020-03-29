@@ -2,9 +2,7 @@ import EventService from '@/services'
 
 const initialState = {
   events: [],
-  categories: ['programming', 'chilling', 'whatever', 'virus'],
-  loading: false,
-  error: null
+  categories: ['programming', 'chilling', 'whatever', 'virus']
 }
 
 const notice = (type, message, dispatch) => {
@@ -16,36 +14,25 @@ export default {
   namespaced: true,
   state: initialState,
   mutations: {
-    ADD_EVENT({ events }, newEvent) {
+    FETCH_EVENT({ events }, newEvent) {
       events.push(newEvent)
     },
-    FETCH_EVENTS_REQUEST(state) {
-      state.loading = true
-      state.error = null
-    },
-    FETCH_EVENTS_SUCCESS(state, events) {
-      state.loading = false
-      state.error = null
+    FETCH_EVENTS(state, events) {
       state.events = events
-    },
-    FETCH_EVENTS_FAILURE(state, error) {
-      state.loading = false
-      state.error = error
     }
   },
   actions: {
-    fetchEvents({ commit }, { page, perPage }) {
-      commit('FETCH_EVENTS_REQUEST')
+    fetchEvents({ commit, dispatch }, { page, perPage }) {
       return EventService.getEvents(page, perPage)
         .then(({ data, headers }) => {
-          commit('FETCH_EVENTS_SUCCESS', data)
+          commit('FETCH_EVENTS', data)
           return { data, headers }
         })
         .catch(error => {
-          commit('FETCH_EVENTS_FAILURE', error.toString())
+          notice('error', error.message, dispatch)
         })
     },
-    getEvent({ state, commit }, id) {
+    getEvent({ state, dispatch }, id) {
       const event = state.events.find(event => event.id === id)
       if (event) {
         return new Promise(resolve => {
@@ -57,13 +44,13 @@ export default {
           return response.data
         })
         .catch(error => {
-          commit('FETCH_EVENTS_FAILURE', error.toString())
+          notice('error', error.message, dispatch)
         })
     },
     createEvent({ commit, dispatch }, newEvent) {
       return EventService.postEvent(newEvent)
         .then(({ data }) => {
-          commit('ADD_EVENT', data)
+          commit('FETCH_EVENT', data)
           const message = 'The event was created successfully!'
           notice('success', message, dispatch)
           return data
