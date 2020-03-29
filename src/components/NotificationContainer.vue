@@ -1,10 +1,12 @@
 <template>
   <div class="container">
-    <Notification
-      v-for="notification in notifications"
-      :key="notification.id"
-      :notification="notification"
-    />
+    <transition name="toggle-slide">
+      <Notification
+        v-for="notification in notifications"
+        :key="notification.id"
+        :notification="notification"
+      />
+    </transition>
   </div>
 </template>
 
@@ -22,7 +24,16 @@ export default {
 <style lang="scss" scoped>
 .container {
   position: absolute;
-  right: 20px;
+  right: 0;
   bottom: 20px;
+  overflow-x: hidden;
+}
+.toggle-slide-enter-active,
+.toggle-slide-leave-active {
+  transition: transform 0.5s ease-in-out;
+}
+.toggle-slide-enter,
+.toggle-slide-leave-to {
+  transform: translateX(100%);
 }
 </style>
