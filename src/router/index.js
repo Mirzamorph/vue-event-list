@@ -5,13 +5,16 @@ import EventCreate from '@/views/EventCreate'
 import EventShow from '@/views/EventShow'
 import NotFound from '@/components/NotFound'
 
+import NProgress from 'nprogress'
+
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'event-list',
-    component: EventList
+    component: EventList,
+    props: true
   },
   {
     path: '/event/create',
@@ -35,6 +38,15 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   routes
+})
+
+router.beforeEach((routeTo, routeFrom, next) => {
+  NProgress.start()
+  next()
+})
+
+router.afterEach(() => {
+  NProgress.done()
 })
 
 export default router
