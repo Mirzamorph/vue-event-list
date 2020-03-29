@@ -12,17 +12,18 @@
 </template>
 
 <script>
+import store from '@/store'
 export default {
-  props: ['id'],
-  data() {
-    return {
-      event: null
+  props: {
+    event: {
+      type: Object,
+      required: true
     }
   },
-  mounted() {
-    this.$store.dispatch('event/getEvent', this.id).then(event => {
-      if (event === undefined) this.$router.push({ name: '404' })
-      this.event = event
+  beforeRouteEnter(to, from, next) {
+    store.dispatch('event/getEvent', to.params.id).then(event => {
+      to.params.event = event
+      next()
     })
   }
 }
