@@ -2,6 +2,7 @@ import EventService from '@/services'
 
 const initialState = {
   events: [],
+  currentEvent: null,
   categories: ['programming', 'chilling', 'whatever', 'virus']
 }
 
@@ -14,11 +15,14 @@ export default {
   namespaced: true,
   state: initialState,
   mutations: {
-    FETCH_EVENT({ events }, newEvent) {
+    ADD_EVENT({ events }, newEvent) {
       events.push(newEvent)
     },
     FETCH_EVENTS(state, events) {
       state.events = events
+    },
+    FETCH_EVENT(state, event) {
+      state.currentEvent = event
     }
   },
   actions: {
@@ -32,16 +36,19 @@ export default {
           notice('error', error.message, dispatch)
         })
     },
-    getEvent({ state, dispatch }, id) {
+    fetchEvent({ state, dispatch, commit }, id) {
       const event = state.events.find(event => event.id === id)
       if (event) {
+        commit('FETCH_EVENT', event)
         return new Promise(resolve => {
           resolve(event)
         })
       }
       return EventService.getEvent(id)
         .then(response => {
-          return response.data
+          const event = response.data
+          commit('FETCH_EVENT', event)
+          return event
         })
         .catch(error => {
           notice('error', error.message, dispatch)
@@ -50,7 +57,7 @@ export default {
     createEvent({ commit, dispatch }, newEvent) {
       return EventService.postEvent(newEvent)
         .then(({ data }) => {
-          commit('FETCH_EVENT', data)
+          commit('ADD_EVENT', data)
           const message = 'The event was created successfully!'
           notice('success', message, dispatch)
           return data

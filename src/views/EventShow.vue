@@ -21,7 +21,7 @@ export default {
     }
   },
   beforeRouteEnter(to, from, next) {
-    store.dispatch('event/getEvent', to.params.id).then(event => {
+    store.dispatch('event/fetchEvent', to.params.id).then(event => {
       to.params.event = event
       next()
     })
