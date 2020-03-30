@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import EventList from '@/views/EventList'
 import EventCreate from '@/views/EventCreate'
 import EventShow from '@/views/EventShow'
-import NotFound from '@/components/NotFound'
+import NotFound from '@/views/NotFound'
+import NetworkIssue from '@/views/NetworkIssue'
 
 import NProgress from 'nprogress'
 
@@ -32,6 +33,15 @@ const routes = [
     name: '404',
     component: NotFound,
     props: true
+  },
+  {
+    path: 'network-issue',
+    name: 'network-issue',
+    component: NetworkIssue
+  },
+  {
+    path: '*',
+    redirect: { name: '404' }
   }
 ]
 
