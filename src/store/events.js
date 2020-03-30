@@ -36,7 +36,7 @@ export default {
           notice('error', error.message, dispatch)
         })
     },
-    fetchEvent({ state, dispatch, commit }, id) {
+    fetchEvent({ state, commit }, id) {
       const event = state.events.find(event => event.id === id)
       if (event) {
         commit('FETCH_EVENT', event)
@@ -44,15 +44,11 @@ export default {
           resolve(event)
         })
       }
-      return EventService.getEvent(id)
-        .then(response => {
-          const event = response.data
-          commit('FETCH_EVENT', event)
-          return event
-        })
-        .catch(error => {
-          notice('error', error.message, dispatch)
-        })
+      return EventService.getEvent(id).then(response => {
+        const event = response.data
+        commit('FETCH_EVENT', event)
+        return event
+      })
     },
     createEvent({ commit, dispatch }, newEvent) {
       return EventService.postEvent(newEvent)
