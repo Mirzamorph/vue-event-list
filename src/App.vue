@@ -210,6 +210,8 @@ textarea {
 [type='text'],
 [type='number'],
 [type='search'],
+[type='date'],
+[type='time'],
 [type='password'] {
   height: 52px;
   width: 100%;
