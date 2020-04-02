@@ -119,6 +119,14 @@
       "time": "20:20",
       "description": "Something new",
       "category": "whatever"
+    },
+    {
+      "id": 16,
+      "title": "Just do it",
+      "date": "2020-04-02",
+      "time": "13:13",
+      "description": "Or don't do it. It depends on you",
+      "category": "chilling"
     }
   ]
 }

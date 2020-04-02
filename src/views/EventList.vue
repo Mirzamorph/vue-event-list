@@ -2,7 +2,11 @@
   <div>
     <h1>Events Listing</h1>
     <EventCard v-for="event in events" :key="event.id" :event="event" />
-    <Pagination v-if="totalCount" :totalPages="totalPages" />
+    <Pagination
+      v-if="totalCount"
+      :totalPages="totalPages"
+      :key="$route.query.page"
+    />
   </div>
 </template>
 

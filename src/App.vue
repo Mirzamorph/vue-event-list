@@ -3,7 +3,7 @@
     <NavBar />
     <NotificationContainer />
     <transition name="fade" mode="out-in">
-      <router-view :key="$route.fullPath" />
+      <router-view />
     </transition>
   </div>
 </template>
@@ -20,7 +20,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s;
@@ -29,9 +29,6 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
-</style>
-
-<style lang="scss">
 html {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
