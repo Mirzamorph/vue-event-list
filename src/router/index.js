@@ -35,7 +35,7 @@ const routes = [
     props: true
   },
   {
-    path: 'network-issue',
+    path: '/network-issue',
     name: 'network-issue',
     component: NetworkIssue
   },
