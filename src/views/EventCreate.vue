@@ -31,7 +31,7 @@
       />
       <base-input label="Select a time" v-model="event.time" type="time" />
 
-      <input type="submit" class="button -fill-gradient" value="Submit" />
+      <base-button type="submit">Submit</base-button>
     </form>
   </div>
 </template>
