@@ -1,8 +1,8 @@
 <template>
   <div class="field">
-    <label>{{ label }}</label>
+    <label v-if="label">{{ label }}</label>
     <input
-      type="text"
+      :type="type"
       :placeholder="placeholder"
       @input="$emit('input', $event.target.value)"
       :value="value"
@@ -21,6 +21,10 @@ export default {
     },
     value: {
       type: String
+    },
+    type: {
+      type: String,
+      default: 'text'
     }
   }
 }
