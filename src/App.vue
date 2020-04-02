@@ -228,20 +228,6 @@ textarea {
 [hidden] {
   display: none;
 }
-input.button {
-  width: 200px;
-  height: 50px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-input.button:hover {
-  color: #fff;
-  background-color: #39b982;
-  border-color: #39b982;
-}
 select {
   width: 100%;
   height: 52px;
