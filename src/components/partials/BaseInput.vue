@@ -3,25 +3,19 @@
     <label v-if="label">{{ label }}</label>
     <input
       :type="type"
-      :placeholder="placeholder"
       @input="$emit('input', $event.target.value)"
       :value="value"
+      v-bind="$attrs"
     />
   </div>
 </template>
 
 <script>
 export default {
+  inheritAttrs: false,
   props: {
-    label: {
-      type: String
-    },
-    placeholder: {
-      type: String
-    },
-    value: {
-      type: String
-    },
+    label: String,
+    value: String,
     type: {
       type: String,
       default: 'text'

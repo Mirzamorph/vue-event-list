@@ -10,15 +10,9 @@
 <script>
 export default {
   props: {
-    label: {
-      type: String
-    },
-    value: {
-      type: String
-    },
-    items: {
-      type: Array
-    }
+    label: String,
+    value: [String, Number],
+    items: Array
   }
 }
 </script>
