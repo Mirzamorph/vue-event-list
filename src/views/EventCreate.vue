@@ -2,7 +2,6 @@
   <div>
     <h1>Create an Event</h1>
     <form @submit.prevent="createEvent">
-      
       <base-select
         label="Select a category"
         v-model="event.category"
@@ -23,7 +22,13 @@
 
       <h3>When is your event?</h3>
 
-      <base-input label="Date" v-model="event.date" type="date" />
+      <base-input
+        label="Date"
+        v-model="event.date"
+        type="date"
+        :min="minimalDate"
+        max="2025-01-01"
+      />
       <base-input label="Select a time" v-model="event.time" type="time" />
 
       <input type="submit" class="button -fill-gradient" value="Submit" />
@@ -33,11 +38,13 @@
 
 <script>
 import NProgress from 'nprogress'
+import moment from 'moment'
 
 export default {
   data() {
     return {
       categories: this.$store.state.event.categories,
+      minimalDate: moment().format('YYYY-MM-DD'),
       event: {
         id: null,
         title: '',
