@@ -21,15 +21,8 @@
 
       <h3>When is your event?</h3>
 
-      <div class="field">
-        <label>Date</label>
-        <input type="date" v-model="event.date" />
-      </div>
-
-      <div class="field">
-        <label>Select a time</label>
-        <input type="time" v-model="event.time" />
-      </div>
+      <base-input label="Date" v-model="event.date" type="date" />
+      <base-input label="Select a time" v-model="event.time" type="time" />
 
       <input type="submit" class="button -fill-gradient" value="Submit" />
     </form>
