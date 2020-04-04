@@ -1,8 +1,8 @@
 <template>
   <div>
     <label v-if="label">{{ label }}</label>
-    <select @input="$emit('input', $event.target.value)">
-      <option value="">Select a category</option>
+    <select @input="updateValue">
+      <option value="">{{ label }}</option>
       <option v-for="item in items" :key="item" :selected="item === value">
         {{ item }}
       </option>
@@ -11,10 +11,11 @@
 </template>
 
 <script>
+import { FormFieldMixin } from '@/mixins/FormMixins'
+
 export default {
+  mixins: [FormFieldMixin],
   props: {
-    label: String,
-    value: [String, Number],
     items: Array
   }
 }

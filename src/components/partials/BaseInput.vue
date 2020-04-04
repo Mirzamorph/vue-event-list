@@ -2,7 +2,6 @@
   <div class="field">
     <label v-if="label">{{ label }}</label>
     <input
-      :type="type"
       @input="$emit('input', $event.target.value)"
       :value="value"
       v-bind="$attrs"
@@ -11,16 +10,11 @@
 </template>
 
 <script>
+import { FormFieldMixin } from '@/mixins/FormMixins'
+
 export default {
-  inheritAttrs: false,
-  props: {
-    label: String,
-    value: String,
-    type: {
-      type: String,
-      default: 'text'
-    }
-  }
+  mixins: [FormFieldMixin],
+  inheritAttrs: false
 }
 </script>
 

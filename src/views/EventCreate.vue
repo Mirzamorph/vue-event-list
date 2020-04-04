@@ -12,12 +12,14 @@
       <h3>Name & describe your event</h3>
       <base-input
         label="Title"
+        type="text"
         placeholder="Add an event title"
         v-model="event.title"
         :class="{ error: $v.event.title.$error }"
       />
       <base-input
         label="Description"
+        type="text"
         placeholder="Add a description"
         v-model="event.description"
         :class="{ error: $v.event.description.$error }"
