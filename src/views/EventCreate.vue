@@ -33,8 +33,12 @@
         max="2025-01-01"
         :class="{ error: $v.event.date.$error }"
       />
-      <base-input label="Select a time" v-model="event.time" type="time" 
-        :class="{ error: $v.event.category.$error }"/>
+      <base-input
+        label="Select a time"
+        v-model="event.time"
+        type="time"
+        :class="{ error: $v.event.time.$error }"
+      />
 
       <base-button type="submit">Submit</base-button>
     </form>
@@ -42,7 +46,7 @@
 </template>
 
 <script>
-// import NProgress from 'nprogress'
+import NProgress from 'nprogress'
 import moment from 'moment'
 import { required } from 'vuelidate/lib/validators'
 
@@ -73,19 +77,20 @@ export default {
   methods: {
     createEvent() {
       this.$v.$touch()
-      // NProgress.start()
-      // this.$store
-      //   .dispatch('event/createEvent', this.event)
-      //   .then(event => {
-      //     if (!event) return
-      //     this.$router.push({
-      //       name: 'event-show',
-      //       params: { id: event.id }
-      //     })
-      //   })
-      //   .catch(() => {
-      //     NProgress.done()
-      //   })
+      if (this.$v.$error) return
+      NProgress.start()
+      this.$store
+        .dispatch('event/createEvent', this.event)
+        .then(event => {
+          if (!event) return
+          this.$router.push({
+            name: 'event-show',
+            params: { id: event.id }
+          })
+        })
+        .catch(() => {
+          NProgress.done()
+        })
     }
   }
 }

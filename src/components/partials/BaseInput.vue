@@ -23,3 +23,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.error input {
+  border-color: red;
+}
+</style>

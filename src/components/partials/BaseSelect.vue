@@ -2,6 +2,7 @@
   <div>
     <label v-if="label">{{ label }}</label>
     <select @input="$emit('input', $event.target.value)">
+      <option value="">Select a category</option>
       <option v-for="item in items" :key="item" :selected="item === value">
         {{ item }}
       </option>
